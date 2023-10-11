@@ -8,3 +8,6 @@ stages:
     - configs/config.yaml
     outs:
     - data/data.xml
+
+
+    
