@@ -8,7 +8,7 @@ from src.utils.data_mgmt import process_posts
 import random
 
 
-STAGE = "stage 01 prepare the data" ## <<< change stage name 
+STAGE = "stage 02 prepare the data" ## <<< change stage name 
 
 logging.basicConfig(
     filename=os.path.join("logs", 'running_logs.log'), 
