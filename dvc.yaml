@@ -24,5 +24,37 @@ stages:
     - artifacts/prepared/train.tsv
     - artifacts/prepared.test.tsv
 
+  featurize:
+    cmd: python src/stage_03_featurization.py --config=configs/config.yaml --params=params.yaml
+    deps:
+    - src/stage_03_featurization.py
+    - src/utils/common.py
+    - src/utils/featurize.py
+    - artifacts/prepared/train.tsv
+    - artifacts/prepared.test.tsv
+    - configs/config.yaml
+    params:
+    - prepare.max_features  
+    - prepare.ngrams
+    outs:
+    - artifacts/features/train.pkl
+    - artifacts/features/test.pkl
+
+  train:
+    cmd: python src/stage_04_train.py --config=configs/config.yaml --params=params.yaml
+    deps:
+    - src/stage_04_train.py
+    - src/utils/common.py
+    - artifacts/features/train.pkl
+    - configs/config.yaml
+    params:
+    - train.seed  
+    - train.n_est
+    - train.min_split
+    outs:
+    - artifacts/model/model.pkl
+  
+
+
 
 
